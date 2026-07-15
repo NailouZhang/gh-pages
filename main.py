@@ -25,7 +25,7 @@ END_STR = TODAY.strftime("%Y/%m/%d")
 API_STATUS_LOG = {}
 
 # ==========================================
-# LLM 基础通信（直连 HTTPS）
+# LLM 基础通信（直连 HTTPS 且带详细错误诊断）
 # ==========================================
 def call_llm(prompt, json_mode=False):
     """
@@ -46,9 +46,10 @@ def call_llm(prompt, json_mode=False):
                 data = r.json()
                 return data["candidates"][0]["content"]["parts"][0]["text"]
             else:
-                print(f"[LLM LOG] Gemini returned code {r.status_code}, trying fallback.")
+                # 打印出 Google 返回的具体错误细节，以便用户诊断
+                print(f"[LLM LOG] Gemini returned code {r.status_code}: {r.text}, trying fallback.")
         except Exception as e:
-            print(f"[LLM ERROR] Gemini fail: {e}")
+            print(f"[LLM ERROR] Gemini Connection fail: {e}")
 
     if GROQ_API_KEY:
         try:
@@ -68,16 +69,21 @@ def call_llm(prompt, json_mode=False):
             if r.status_code == 200:
                 data = r.json()
                 return data["choices"][0]["message"]["content"]
+            else:
+                # 打印出 Groq 返回的具体错误细节
+                print(f"[LLM LOG] Groq returned code {r.status_code}: {r.text}")
         except Exception as e:
-            print(f"[LLM ERROR] Groq fail: {e}")
+            print(f"[LLM ERROR] Groq Connection fail: {e}")
 
-    print("[LLM FATAL] No LLM API key available or both failed.")
+    print("[LLM FATAL] No LLM API key available or both failed. Engaging hard fallback translation mechanism.")
     return "{}" if json_mode else "Translation or Summarization unavailable."
 
 # ==========================================
 # 谷歌免费翻译作为降级保障 (Fallback)
 # ==========================================
 def fallback_translate(text):
+    if not text or text.strip() in ["Summary unavailable.", "Abstract only.", "Original article text unavailable."]:
+        return "暂无详细摘要内容。"
     try:
         url = "https://translate.googleapis.com/translate_a/single"
         params = {
@@ -136,11 +142,14 @@ def generate_search_plan(profile_id):
         }
 
 # ==========================================
-# 数据采集模块 (PubMed, EuropePMC, S2, Crossref, bioRxiv, Google News)
+# 数据采集模块 (PubMed Efetch XML, EuropePMC, S2, Crossref, bioRxiv, Google News)
 # ==========================================
 def fetch_pubmed(query):
+    """
+    采用 PubMed 官方的 Efetch 引擎，深度解析 XML 元数据并提取文章 Abstract 字段
+    """
     results = []
-    url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
+    search_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
     term = f"{query} AND (\"{START_STR}\"[Date - Publication] : \"{END_STR}\"[Date - Publication])"
     params = {
         "db": "pubmed",
@@ -151,46 +160,112 @@ def fetch_pubmed(query):
     if NCBI_API_KEY:
         params["api_key"] = NCBI_API_KEY
     try:
-        r = requests.get(url, params=params, timeout=15)
+        r = requests.get(search_url, params=params, timeout=15)
         if r.status_code == 200:
             ids = r.json().get("esearchresult", {}).get("idlist", [])
             if not ids:
                 API_STATUS_LOG["PubMed"] = "success_with_0_results"
                 return results
             
-            sum_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi"
-            sum_params = {"db": "pubmed", "id": ",".join(ids), "retmode": "json"}
+            # 升级：调用 efetch.fcgi 并请求 XML 数据
+            fetch_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
+            fetch_params = {
+                "db": "pubmed",
+                "id": ",".join(ids),
+                "retmode": "xml"
+            }
             if NCBI_API_KEY:
-                sum_params["api_key"] = NCBI_API_KEY
-            sum_r = requests.get(sum_url, params=sum_params, timeout=15)
-            if sum_r.status_code == 200:
-                meta_dict = sum_r.json().get("result", {})
-                for uid in ids:
-                    meta = meta_dict.get(uid, {})
+                fetch_params["api_key"] = NCBI_API_KEY
+            
+            fetch_r = requests.get(fetch_url, params=fetch_params, timeout=20)
+            if fetch_r.status_code == 200:
+                root = ET.fromstring(fetch_r.content)
+                for article in root.findall(".//PubmedArticle"):
+                    # PMID
+                    pmid = ""
+                    pmid_el = article.find(".//MedlineCitation/PMID")
+                    if pmid_el is not None:
+                        pmid = pmid_el.text
+                    
+                    # 标题 (全面提取内部所有嵌套标签的文本，如 <i> 等)
+                    title = ""
+                    title_el = article.find(".//ArticleTitle")
+                    if title_el is not None:
+                        title = "".join(title_el.itertext()).strip()
+                    
+                    # 摘要（完整合并多段 AbstractText）
+                    abstract_parts = []
+                    for abs_text in article.findall(".//AbstractText"):
+                        if abs_text.text:
+                            abstract_parts.append("".join(abs_text.itertext()).strip())
+                    abstract = " ".join(abstract_parts)
+                    
+                    # 期刊名称
+                    journal = ""
+                    journal_el = article.find(".//Journal/ISOAbbreviation")
+                    if journal_el is None:
+                        journal_el = article.find(".//Journal/Title")
+                    if journal_el is not None:
+                        journal = journal_el.text
+                    
+                    # 出版年份
+                    year = ""
+                    year_el = article.find(".//JournalIssue/PubDate/Year")
+                    if year_el is not None:
+                        year = year_el.text
+                    else:
+                        mdate_el = article.find(".//JournalIssue/PubDate/MedlineDate")
+                        if mdate_el is not None and mdate_el.text:
+                            year = mdate_el.text[:4]
+                    
+                    volume = ""
+                    vol_el = article.find(".//JournalIssue/Volume")
+                    if vol_el is not None: volume = vol_el.text
+                    
+                    issue = ""
+                    iss_el = article.find(".//JournalIssue/Issue")
+                    if iss_el is not None: issue = iss_el.text
+                    
+                    pages = ""
+                    pg_el = article.find(".//Pagination/MedlinePgn")
+                    if pg_el is not None: pages = pg_el.text
+                    
+                    # DOI
                     doi = ""
-                    for aid in meta.get("articleids", []):
-                        if aid.get("idtype") == "doi":
-                            doi = aid.get("value")
+                    for article_id in article.findall(".//ArticleIdList/ArticleId"):
+                        if article_id.attrib.get("IdType") == "doi":
+                            doi = article_id.text
+                    
+                    # 作者列表
+                    authors = []
+                    for author in article.findall(".//AuthorList/Author"):
+                        last = author.find("LastName")
+                        fore = author.find("ForeName")
+                        if last is not None and last.text:
+                            initials = fore.text if fore is not None and fore.text else ""
+                            authors.append(f"{last.text} {initials}".strip())
                     
                     results.append({
-                        "id": f"pmid-{uid}",
+                        "id": f"pmid-{pmid}",
                         "source": "pubmed",
-                        "doi": doi,
-                        "pmid": uid,
-                        "title": meta.get("title", ""),
-                        "abstract": "",
-                        "authors": [a.get("name") for a in meta.get("authors", [])],
-                        "journal": meta.get("source", ""),
-                        "year": meta.get("pubdate", "")[:4],
-                        "volume": meta.get("volume", ""),
-                        "issue": meta.get("issue", ""),
-                        "pages": meta.get("pages", ""),
-                        "pub_date": meta.get("pubdate", ""),
-                        "url": f"https://pubmed.ncbi.nlm.nih.gov/{uid}"
+                        "doi": doi or "",
+                        "pmid": pmid,
+                        "title": title,
+                        "abstract": abstract,
+                        "authors": authors,
+                        "journal": journal or "",
+                        "year": year,
+                        "volume": volume or "",
+                        "issue": issue or "",
+                        "pages": pages or "",
+                        "pub_date": year,
+                        "url": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}"
                     })
-            API_STATUS_LOG["PubMed"] = f"success_with_{len(results)}_results"
+                API_STATUS_LOG["PubMed"] = f"success_with_{len(results)}_results"
+            else:
+                API_STATUS_LOG["PubMed"] = f"failed_fetch_code_{fetch_r.status_code}"
         else:
-            API_STATUS_LOG["PubMed"] = f"failed_code_{r.status_code}"
+            API_STATUS_LOG["PubMed"] = f"failed_search_code_{r.status_code}"
     except Exception as e:
         API_STATUS_LOG["PubMed"] = f"error_{str(e)[:50]}"
     return results
@@ -457,10 +532,17 @@ def llm_deduplicate(papers, news):
         return papers[:6], news[:6]
 
 # ==========================================
-# 文献与新闻深度剖析 (Separate Prompts)
+# 文献与新闻深度剖析（含高强度防碎兜底机制）
 # ==========================================
 def process_paper_llm(paper):
     print(f"[*] Analyzing Paper: {paper['title'][:60]}...")
+    
+    # 提前预设极度安全的默认值（防止 LLM 故障时丢失摘要）
+    paper["type"] = "research"
+    paper["chinese_title"] = paper["title"]
+    paper["english_summary"] = paper["abstract"] if paper.get("abstract") else "Abstract text unavailable."
+    paper["chinese_summary"] = ""
+    
     prompt = f"""
     You are an academic peer reviewer. Analyze the paper details:
     Title: {paper['title']}
@@ -496,28 +578,42 @@ def process_paper_llm(paper):
     Do NOT output any markdown prose outside the JSON block.
     """
     res_text = call_llm(prompt, json_mode=True)
-    try:
-        if "```json" in res_text:
-            res_text = res_text.split("```json")[1].split("```")[0].strip()
-        elif "```" in res_text:
-            res_text = res_text.split("```")[1].split("```")[0].strip()
-        result = json.loads(res_text)
-        paper["type"] = result.get("type", "research")
-        paper["chinese_title"] = result.get("chinese_title", paper["title"])
-        paper["english_summary"] = result.get("english_summary", "Summary unavailable.")
-        paper["chinese_summary"] = result.get("chinese_summary", "")
-    except Exception as e:
-        print(f"[-] Paper parsing failed: {e}")
-        paper["type"] = "research"
-        paper["chinese_title"] = paper["title"]
-        paper["english_summary"] = paper["abstract"] if paper["abstract"] else "Abstract only."
-        paper["chinese_summary"] = ""
-        
+    if res_text and res_text != "{}":
+        try:
+            if "```json" in res_text:
+                res_text = res_text.split("```json")[1].split("```")[0].strip()
+            elif "```" in res_text:
+                res_text = res_text.split("```")[1].split("```")[0].strip()
+            result = json.loads(res_text)
+            
+            if result.get("chinese_title"):
+                paper["chinese_title"] = result["chinese_title"]
+            if result.get("english_summary"):
+                paper["english_summary"] = result["english_summary"]
+            if result.get("chinese_summary"):
+                paper["chinese_summary"] = result["chinese_summary"]
+            if result.get("type"):
+                paper["type"] = result["type"]
+        except Exception as e:
+            print(f"[-] Paper parsing JSON failed: {e}")
+
+    # 100% 汉化兜底：如果中文标题仍然和英文原名完全一致，强行调用免费汉化
+    if not any('\u4e00' <= char <= '\u9fff' for char in paper["chinese_title"]):
+        paper["chinese_title"] = fallback_translate(paper["title"])
+
+    # 100% 汉化兜底：如果大模型没有吐出中文翻译摘要，自动触发机器翻译
     if not paper["chinese_summary"]:
         paper["chinese_summary"] = fallback_translate(paper["english_summary"])
 
+
 def process_news_llm(news_item):
     print(f"[*] Analyzing News: {news_item['title'][:60]}...")
+    
+    # 提前预设安全的默认值
+    news_item["chinese_title"] = news_item["title"]
+    news_item["english_summary"] = "Original news content unavailable."
+    news_item["chinese_summary"] = ""
+    
     prompt = f"""
     You are an epidemiological intelligence officer. Analyze this news headline:
     Title: {news_item['title']}
@@ -542,21 +638,28 @@ def process_news_llm(news_item):
     Do NOT output any markdown prose outside the JSON block.
     """
     res_text = call_llm(prompt, json_mode=True)
-    try:
-        if "```json" in res_text:
-            res_text = res_text.split("```json")[1].split("```")[0].strip()
-        elif "```" in res_text:
-            res_text = res_text.split("```")[1].split("```")[0].strip()
-        result = json.loads(res_text)
-        news_item["chinese_title"] = result.get("chinese_title", news_item["title"])
-        news_item["english_summary"] = result.get("english_summary", "Summary unavailable.")
-        news_item["chinese_summary"] = result.get("chinese_summary", "")
-    except Exception as e:
-        print(f"[-] News parsing failed: {e}")
-        news_item["chinese_title"] = news_item["title"]
-        news_item["english_summary"] = "No summary available."
-        news_item["chinese_summary"] = ""
-        
+    if res_text and res_text != "{}":
+        try:
+            if "```json" in res_text:
+                res_text = res_text.split("```json")[1].split("```")[0].strip()
+            elif "```" in res_text:
+                res_text = res_text.split("```")[1].split("```")[0].strip()
+            result = json.loads(res_text)
+            
+            if result.get("chinese_title"):
+                news_item["chinese_title"] = result["chinese_title"]
+            if result.get("english_summary"):
+                news_item["english_summary"] = result["english_summary"]
+            if result.get("chinese_summary"):
+                news_item["chinese_summary"] = result["chinese_summary"]
+        except Exception as e:
+            print(f"[-] News parsing JSON failed: {e}")
+
+    # 100% 汉化兜底：如果中文标题未翻译，强行汉化
+    if not any('\u4e00' <= char <= '\u9fff' for char in news_item["chinese_title"]):
+        news_item["chinese_title"] = fallback_translate(news_item["title"])
+
+    # 100% 汉化兜底：若中文摘要为空，执行翻译
     if not news_item["chinese_summary"]:
         news_item["chinese_summary"] = fallback_translate(news_item["english_summary"])
 
