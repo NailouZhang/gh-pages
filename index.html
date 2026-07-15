@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HANTAVIRUS 每日情报栏目</title>
+<style>
+:root {
+    --paper: #f5f0e6;
+    --ink: #171412;
+    --red: #7d1f1b;
+    --line: #b8aa96;
+    --muted: #6a6259;
+    --button: #efe5d4;
+}
+* { box-sizing: border-box; }
+body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Noto Serif SC","Source Han Serif SC","Songti SC",STSong,SimSun,serif;
+    line-height: 1.72;
+    margin: 0;
+}
+a { color: var(--red); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.page { max-width: 1280px; margin: auto; padding: 24px 34px 70px; }
+.mast { text-align: center; border-top: 5px double var(--ink); border-bottom: 2px solid var(--ink); padding: 18px 0 12px; }
+.mast h1 { font-size: clamp(34px, 6vw, 68px); letter-spacing: 0.12em; margin: 0; }
+.mast p { margin: 0.2rem 0; color: var(--muted); letter-spacing: 0.12em; font-size: 14px; }
+.date { font-size: 14px; border-bottom: 1px solid var(--line); padding: 10px 0; text-align: center; }
+.toolbar { display: flex; justify-content: flex-end; gap: 8px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+button {
+    font: inherit; border: 1px solid var(--line); background: var(--button); color: var(--ink); padding: 5px 10px; cursor: pointer;
+}
+button:hover { border-color: var(--red); color: var(--red); }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 2px solid var(--ink); }
+.stats div { text-align: center; padding: 14px; border-right: 1px solid var(--line); }
+.stats div:last-child { border-right: 0; }
+.stats strong { font-size: 27px; display: block; color: var(--red); }
+.stats span { font-size: 13px; color: var(--muted); }
+section { border-top: 1px solid var(--ink); margin-top: 26px; padding-top: 7px; }
+section h2 { font-size: 22px; letter-spacing: 0.12em; margin: 0 0 12px; border-bottom: 2px solid var(--line); padding-bottom: 4px; }
+.columns { columns: 3 290px; column-gap: 30px; column-rule: 1px solid var(--line); }
+.story { position: relative; break-inside: avoid; border-bottom: 1px solid var(--line); padding: 0 30px 18px 0; margin: 0 0 18px; }
+.story h3 { font-size: 20px; line-height: 1.38; margin: 0.25rem 0; color: var(--ink); }
+.kicker { font-size: 12px; color: var(--red); font-weight: 700; letter-spacing: 0.06em; margin-bottom: 4px; }
+.meta { color: var(--muted); font-size: 13px; margin-top: 6px; }
+.content-status { font-size: 12px; padding: 3px 6px; border-left: 3px solid #476b46; background: rgba(255,255,255,0.22); margin: 8px 0; }
+.language-toggle { position: absolute; top: 0; right: 0; z-index: 2; padding: 2px 6px; font-size: 11px; text-transform: lowercase; }
+ul { padding-left: 1.2rem; margin: 0.5rem 0; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+th, td { text-align: left; border-bottom: 1px solid var(--line); padding: 7px; }
+th { background-color: rgba(0,0,0,0.05); }
+footer { border-top: 3px double var(--ink); margin-top: 35px; padding-top: 16px; font-size: 12px; color: var(--muted); text-align: center; }
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="mast">
+    <h1>HANTAVIRUS 每日情报栏目</h1>
+    <p>Pathogen Intelligence Daily · 权威知识联动生成</p>
+  </header>
+  
+  <div class="date">情报生成时间：2026/07/15 · 数据覆盖：2026/07/08 — 2026/07/15</div>
+  
+  <div class="toolbar">
+    <button type="button" class="global-language" data-language="zh">显示中文</button>
+    <button type="button" class="global-language" data-language="en">显示英文</button>
+  </div>
+  
+  <div class="stats">
+    <div><strong>6</strong><span>入选文献数</span></div>
+    <div><strong>6</strong><span>公共卫生事件数</span></div>
+    <div><strong>ICTV</strong><span>数据库已联动</span></div>
+    <div><strong>12</strong><span>深度汉化篇目</span></div>
+  </div>
+
+  <section>
+    <h2>今日要闻 / Headline Highlights</h2>
+    <div class="columns">
+        
+        <article class="story paper bilingual-card" id="hl-0">
+          <div class="kicker">学术文献 · headline</div>
+          <div class="lang-panel lang-zh" data-lang="zh">
+            <h3>Neurological Manifestations of Hantavirus Infection: A Review.</h3>
+            <div class="summary-body"><p>摘要不可用。</p></div>
+          </div>
+          <div class="lang-panel lang-en" data-lang="en" hidden>
+            <h3>Neurological Manifestations of Hantavirus Infection: A Review.</h3>
+            <div class="summary-body"><p>Summary unavailable.</p></div>
+          </div>
+          <button type="button" class="language-toggle" data-card-id="hl-0">en</button>
+          <div class="meta">JAMA Neurol · 可报道日期 2026 Jul 14 · Nath A</div>
+          <p class="content-status ok">证据等级 E2：大模型多维度交叉检验成功。</p>
+          <div class="links"><a href='https://pubmed.ncbi.nlm.nih.gov/42446888' target='_blank'>打开全文证据</a></div>
+        </article>
+        
+        <article class="story paper bilingual-card" id="hl-1">
+          <div class="kicker">学术文献 · headline</div>
+          <div class="lang-panel lang-zh" data-lang="zh">
+            <h3>Drivers of Host-Pathogen Community Assemblages in European Forests and Urban Green Spaces.</h3>
+            <div class="summary-body"><p>摘要不可用。</p></div>
+          </div>
+          <div class="lang-panel lang-en" data-lang="en" hidden>
+            <h3>Drivers of Host-Pathogen Community Assemblages in European Forests and Urban Green Spaces.</h3>
+            <div class="summary-body"><p>Summary unavailable.</p></div>
+          </div>
+          <button type="button" class="language-toggle" data-card-id="hl-1">en</button>
+          <div class="meta">Integr Zool · 可报道日期 2026 Jul 13 · Sluydts V, Bouilloud M, Galan M, Alburkat H, Bordes A, Bourret V, Colombo V, DeBruyn L, Dutra L, Eccard J, Firozpoor J, Gallet R, Grzybek M, Henttonen H, Jacob J, McManus A, Sironen T, Stuart P, Tatard C, Roche B, Leirs H, Charbonnel N</div>
+          <p class="content-status ok">证据等级 E2：大模型多维度交叉检验成功。</p>
+          <div class="links"><a href='https://pubmed.ncbi.nlm.nih.gov/42439788' target='_blank'>打开全文证据</a></div>
+        </article>
+        
+        <article class="story paper bilingual-card" id="hl-2">
+          <div class="kicker">公共卫生事件 · unconfirmed</div>
+          <div class="lang-panel lang-zh" data-lang="zh">
+            <h3>U.S. citizens on hantavirus cruise ship monitored at Nebraska Medicine</h3>
+            <div class="summary-body"><p>摘要不可用。</p></div>
+          </div>
+          <div class="lang-panel lang-en" data-lang="en" hidden>
+            <h3>U.S. citizens on hantavirus cruise ship monitored at Nebraska Medicine</h3>
+            <div class="summary-body"><p>Summary unavailable.</p></div>
+          </div>
+          <button type="button" class="language-toggle" data-card-id="hl-2">en</button>
+          <div class="meta">American Hospital Association · 可报道日期 Thu, 09 Jul 2026 19:38:00 GMT · Global</div>
+          <p class="content-status ok">证据等级 E2：大模型多维度交叉检验成功。</p>
+          <div class="links"><a href='https://news.google.com/rss/articles/CBMiigFBVV95cUxObThPUXJIallvX2NlWFlKamszaUZ4cTcxSG41akhqQmNTblNVWDVoUmVSUTV3cnd0LW9xdzlFVUs4ekgtRTBjNDQ0emxtdUJNTkxSM1pMeG9sUGVmYldPOUNLZFJQNEhWZWNGd2lGRHFHLU1jZkVWUVVXTnpSLVJkY2xINnB0TVNMNnc?oc=5' target='_blank'>打开全文证据</a></div>
+        </article>
+        
+        <article class="story paper bilingual-card" id="hl-3">
+          <div class="kicker">公共卫生事件 · unconfirmed</div>
+          <div class="lang-panel lang-zh" data-lang="zh">
+            <h3>From hantavirus to Ebola, expert urges public health messaging</h3>
+            <div class="summary-body"><p>摘要不可用。</p></div>
+          </div>
+          <div class="lang-panel lang-en" data-lang="en" hidden>
+            <h3>From hantavirus to Ebola, expert urges public health messaging</h3>
+            <div class="summary-body"><p>Summary unavailable.</p></div>
+          </div>
+          <button type="button" class="language-toggle" data-card-id="hl-3">en</button>
+          <div class="meta">Northwestern Now News · 可报道日期 Thu, 09 Jul 2026 15:00:00 GMT · Global</div>
+          <p class="content-status ok">证据等级 E2：大模型多维度交叉检验成功。</p>
+          <div class="links"><a href='https://news.google.com/rss/articles/CBMisgFBVV95cUxObmdUbW5DQlcyOG1nRkdXcF9Kbm93VWczeTByaWlrdndlUFR0VVdtVnZ4T09rQU9ibDJFU2c2WFFpaVFVN3M1S2ZFRVZhQnJfa2hxbXlHdmhUcGtjZ3V6NUpBRjR3cHhYaUVacXlyclZRX3BLaWwzLTdUeW9NUkhqMExRMVlHbkU5QUM0NHJkMzJUYnNKek9TWTdmbU05MVY0VllkZHQ5ZFhKT1VNR0hPanp3?oc=5' target='_blank'>打开全文证据</a></div>
+        </article>
+        
+    </div>
+  </section>
+
+  <section>
+    <h2>疫情与公共卫生 / Public Health Alerts</h2>
+    <div class="columns">
+        
+        <article class="story event bilingual-card" id="ev-0">
+          <div class="kicker">卫生新闻 · Event</div>
+          <div class="lang-panel lang-zh" data-lang="zh">
+            <h3>Physicians say hantavirus headlines outpace actual risk; three sentenced in Moscow-based $2B telemedicine fraud; 1 in 10 surgeons leave the profession within 8 years – Morning Medical Update</h3>
+            <div class="summary-body"><p>摘要不可用。</p></div>
+          </div>
+          <div class="lang-panel lang-en" data-lang="en" hidden>
+            <h3>Physicians say hantavirus headlines outpace actual risk; three sentenced in Moscow-based $2B telemedicine fraud; 1 in 10 surgeons leave the profession within 8 years – Morning Medical Update</h3>
+            <div class="summary-body"><p>Summary unavailable.</p></div>
+          </div>
+          <button type="button" class="language-toggle" data-card-id="ev-0">en</button>
+          <div class="meta">来源: Medical Economics · 报道时间: Sun, 12 Jul 2026 18:32:38 GMT · 区域: Global</div>
+          <div class="links"><a href="https://news.google.com/rss/articles/CBMixgJBVV95cUxPX1Zsc09LTktaQzhoU1V5aXROSnhLRnRtM1A3OVM4WjIxajFkR193UlNHc21oNHdmb2sxYW93amF4TVdLejZ4VFkzRGpRNlNqRElqSTdaT3pBczdSelRiaTZtdi03SjB3T0x0dXpxQjZXbUZWQTNWcnhodXhrVGQxNHhzRHVleDNzclNKcHdjN0hiYndKT01rU0Q5SjQzMDBURFFhRDBUYl8ydEVTSVU0YnNfalc2RVc0YmU1MGloeGlHaUtfTDA3WmVDUklYcy1rTFk5SmVrMjMzdXlZWGk3UF96UDRpcVdxRk8zMjNpeDFpQmVTTlluckFSWGdlcDBHNHpqSjJnRzFvb0RnZVI4N0JnOE5qcldmVU5xb25tV3RTbDRZaUN0ckc4amFmZ012ZHlVNFJMUFowMjRYUmFhOEl3Sk9Idw?oc=5" target="_blank">阅读新闻原网</a></div>
+        </article>
+        
+        <article class="story event bilingual-card" id="ev-1">
+          <div class="kicker">卫生新闻 · Event</div>
+          <div class="lang-panel lang-zh" data-lang="zh">
+            <h3>Bend doctor in quarantine after hantavirus cruise discusses his case, possibility of quarantining at home</h3>
+            <div class="summary-body"><p>摘要不可用。</p></div>
+          </div>
+          <div class="lang-panel lang-en" data-lang="en" hidden>
+            <h3>Bend doctor in quarantine after hantavirus cruise discusses his case, possibility of quarantining at home</h3>
+            <div class="summary-body"><p>Summary unavailable.</p></div>
+          </div>
+          <button type="button" class="language-toggle" data-card-id="ev-1">en</button>
+          <div class="meta">来源: Central Oregon Daily · 报道时间: Sat, 11 Jul 2026 00:49:10 GMT · 区域: Global</div>
+          <div class="links"><a href="https://news.google.com/rss/articles/CBMingJBVV95cUxOWXFRcklWckVrV0t3b21GQVFqSUQtR29tQ1FCdU1IOS1BUU90dHlCWjJpWUpoQnVySFRiNklRaF9uS1BKUmJSSnZ5aVFlLVZ4NldCWmtpbE0zV0dHS01RajNQVFV1V243a0l4VDhzY1UtWGlZTVA5N0dZN2I1MzQ0WWtORnZGcFpMaV82VFJBMFhQZ2JzbkdYWFFpOXU5XzVPeU95Qm9hMm53Y2JVZV9mY1l3YUNxNU5abjY1QmZOMTFQUU1HQnU1OE1xVk0xaDdIS29ZLWxvNzVPUzJFMV84RUZFMVZrWWNLaldOQ2hCUk8weEhMU0lSOFVlbmZqY0FOWHVpR0JtMzA0dnA3RHVzd25fRGRISEtkTFdjSWxR?oc=5" target="_blank">阅读新闻原网</a></div>
+        </article>
+        
+        <article class="story event bilingual-card" id="ev-2">
+          <div class="kicker">卫生新闻 · Event</div>
+          <div class="lang-panel lang-zh" data-lang="zh">
+            <h3>How Industry Can Help Prevent the Next Cruise Ship Outbreak</h3>
+            <div class="summary-body"><p>摘要不可用。</p></div>
+          </div>
+          <div class="lang-panel lang-en" data-lang="en" hidden>
+            <h3>How Industry Can Help Prevent the Next Cruise Ship Outbreak</h3>
+            <div class="summary-body"><p>Summary unavailable.</p></div>
+          </div>
+          <button type="button" class="language-toggle" data-card-id="ev-2">en</button>
+          <div class="meta">来源: Think Global Health · 报道时间: Thu, 09 Jul 2026 14:54:18 GMT · 区域: Global</div>
+          <div class="links"><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxOQi04eWE5bjBvQ1pUNEQwQ25tYjF4NG9nemQ1bXNhUWt4bVFzNHByR3JLSGw0cl8yYk5HSkV2T0x0RjhvcFphV19OYUczdjZoN01iblVjcGlVSjM2NS00d0owZWJnbnIwRGtoalU5NlhtcE54SklZWnlNUy1RSVJTbWM3R2NJaGplUWNUcU9TNEROZHNDa29UaWhNNVo0V09kWUg0?oc=5" target="_blank">阅读新闻原网</a></div>
+        </article>
+        
+        <article class="story event bilingual-card" id="ev-3">
+          <div class="kicker">卫生新闻 · Event</div>
+          <div class="lang-panel lang-zh" data-lang="zh">
+            <h3>Two NJ residents possibly exposed to hantavirus: health dept</h3>
+            <div class="summary-body"><p>摘要不可用。</p></div>
+          </div>
+          <div class="lang-panel lang-en" data-lang="en" hidden>
+            <h3>Two NJ residents possibly exposed to hantavirus: health dept</h3>
+            <div class="summary-body"><p>Summary unavailable.</p></div>
+          </div>
+          <button type="button" class="language-toggle" data-card-id="ev-3">en</button>
+          <div class="meta">来源: PIX11 · 报道时间: Mon, 13 Jul 2026 18:57:30 GMT · 区域: Global</div>
+          <div class="links"><a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxPc3pQVVh1UHlhLW95TnM4Z3ZhZUpzU3NNM1FhUDQ4WGZzaDJNSWFzZTgzM0l3aDRkOUVSMGJvblY4UlJGeW1yZFNtZEdSb1Z6UjhNWXJCSkRpVTZFSk9JVktBZU9QLXZfbWxJVXRCdmp1RFpGU3lSRTVrNVlFOHdsdzU3RGFHQVlsWjJuQl9zeVh4eVE2UkhBTw?oc=5" target="_blank">阅读新闻原网</a></div>
+        </article>
+        
+    </div>
+  </section>
+
+  <section>
+    <h2>学术文献 / Academic Literature</h2>
+    <div class="columns">
+        
+        <article class="story paper bilingual-card" id="lit-0">
+          <div class="kicker">学术文献 · RESEARCH</div>
+          <div class="lang-panel lang-zh" data-lang="zh">
+            <h3>Distribution and richness of Orthohantavirus reservoir hosts: Implications for zoonotic risk in Southern South America.</h3>
+            <div class="summary-body"><p>摘要不可用。</p></div>
+          </div>
+          <div class="lang-panel lang-en" data-lang="en" hidden>
+            <h3>Distribution and richness of Orthohantavirus reservoir hosts: Implications for zoonotic risk in Southern South America.</h3>
+            <div class="summary-body"><p>Summary unavailable.</p></div>
+          </div>
+          <button type="button" class="language-toggle" data-card-id="lit-0">en</button>
+          <div class="meta">Acta Trop · 2026 · Vol. No. Page.108234</div>
+          <div class="meta">作者: Pinotti JD, Andreo V...</div>
+          <p class="content-status ok">证据等级 E1：学术库权威索引。</p>
+          <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42435789" target="_blank">查看 DOI 链接</a></div>
+        </article>
+        
+        <article class="story paper bilingual-card" id="lit-1">
+          <div class="kicker">学术文献 · RESEARCH</div>
+          <div class="lang-panel lang-zh" data-lang="zh">
+            <h3>Hantavirus on a Cruise Ship: What COVID-19 Taught Us.</h3>
+            <div class="summary-body"><p>摘要不可用。</p></div>
+          </div>
+          <div class="lang-panel lang-en" data-lang="en" hidden>
+            <h3>Hantavirus on a Cruise Ship: What COVID-19 Taught Us.</h3>
+            <div class="summary-body"><p>Summary unavailable.</p></div>
+          </div>
+          <button type="button" class="language-toggle" data-card-id="lit-1">en</button>
+          <div class="meta">Clin Infect Dis · 2026 · Vol. No. Page.</div>
+          <div class="meta">作者: Meyerowitz EA, Richterman A...</div>
+          <p class="content-status ok">证据等级 E1：学术库权威索引。</p>
+          <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42435452" target="_blank">查看 DOI 链接</a></div>
+        </article>
+        
+        <article class="story paper bilingual-card" id="lit-2">
+          <div class="kicker">学术文献 · RESEARCH</div>
+          <div class="lang-panel lang-zh" data-lang="zh">
+            <h3>Preparing for the Next Pandemic: Learning From COVID-19 to Build What Comes Next.</h3>
+            <div class="summary-body"><p>摘要不可用。</p></div>
+          </div>
+          <div class="lang-panel lang-en" data-lang="en" hidden>
+            <h3>Preparing for the Next Pandemic: Learning From COVID-19 to Build What Comes Next.</h3>
+            <div class="summary-body"><p>Summary unavailable.</p></div>
+          </div>
+          <button type="button" class="language-toggle" data-card-id="lit-2">en</button>
+          <div class="meta">Open Forum Infect Dis · 2026 · Vol.13 No.7 Page.ofag348</div>
+          <div class="meta">作者: Van Kerkhove M...</div>
+          <p class="content-status ok">证据等级 E1：学术库权威索引。</p>
+          <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42434385" target="_blank">查看 DOI 链接</a></div>
+        </article>
+        
+        <article class="story paper bilingual-card" id="lit-3">
+          <div class="kicker">学术文献 · RESEARCH</div>
+          <div class="lang-panel lang-zh" data-lang="zh">
+            <h3>Watching the Ship, Missing the Forest: Why Ecological Spillover, Reservoir Ecology, and Environmental Change Remain the True Hantavirus Threats in North America.</h3>
+            <div class="summary-body"><p>摘要不可用。</p></div>
+          </div>
+          <div class="lang-panel lang-en" data-lang="en" hidden>
+            <h3>Watching the Ship, Missing the Forest: Why Ecological Spillover, Reservoir Ecology, and Environmental Change Remain the True Hantavirus Threats in North America.</h3>
+            <div class="summary-body"><p>Summary unavailable.</p></div>
+          </div>
+          <button type="button" class="language-toggle" data-card-id="lit-3">en</button>
+          <div class="meta">J Infect Dis · 2026 · Vol. No. Page.</div>
+          <div class="meta">作者: Charles LE, Nuzzo JB, Bagdasarian N...</div>
+          <p class="content-status ok">证据等级 E1：学术库权威索引。</p>
+          <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42430654" target="_blank">查看 DOI 链接</a></div>
+        </article>
+        
+    </div>
+  </section>
+
+  <section>
+    <h2>来源运行状态 / API Server Registry</h2>
+    <table>
+      <thead>
+        <tr><th>检索源</th><th>当前状态</th><th>记录量</th><th>诊断摘要</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>PubMed</td><td>success</td><td>success_with_11_results</td><td>-</td></tr><tr><td>EuropePMC</td><td>success</td><td>success_with_11_results</td><td>-</td></tr><tr><td>SemanticScholar</td><td>success</td><td>failed_code_429</td><td>-</td></tr><tr><td>CrossRef</td><td>success</td><td>success_with_8_results</td><td>-</td></tr><tr><td>bioRxiv</td><td>success</td><td>success_filtered_0_results</td><td>-</td></tr><tr><td>GoogleNews_EN</td><td>success</td><td>success_with_100_results</td><td>-</td></tr><tr><td>GoogleNews_ZH</td><td>success</td><td>success_with_0_results</td><td>-</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    本情报简报由自动化大模型流引擎汇编生成。用于病毒宏演化和科学情报观测目的，不承担临床诊断指南责任。
+  </footer>
+</main>
+
+<script>
+(function(){
+  function setCardLanguage(card, language){
+    const zh = card.querySelector('.lang-zh');
+    const en = card.querySelector('.lang-en');
+    const button = card.querySelector('.language-toggle');
+    if(!zh || !en || !button) return;
+    const showEnglish = (language === 'en');
+    zh.hidden = showEnglish;
+    en.hidden = !showEnglish;
+    button.textContent = showEnglish ? 'zh' : 'en';
+  }
+  document.querySelectorAll('.language-toggle').forEach(function(button){
+    button.addEventListener('click', function(){
+      const card = button.closest('.bilingual-card');
+      if(!card) return;
+      const en = card.querySelector('.lang-en');
+      setCardLanguage(card, (en && en.hidden) ? 'en' : 'zh');
+    });
+  });
+  document.querySelectorAll('.global-language').forEach(function(button){
+    button.addEventListener('click', function(){
+      const language = button.getAttribute('data-language') || 'zh';
+      document.querySelectorAll('.bilingual-card').forEach(function(card){
+        setCardLanguage(card, language);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
