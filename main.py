@@ -119,7 +119,6 @@ def generate_search_plan(profile_id):
     """
     res_text = call_llm(prompt, json_mode=True)
     try:
-        # 剥离 Markdown 外壳
         if "```json" in res_text:
             res_text = res_text.split("```json")[1].split("```")[0].strip()
         elif "```" in res_text:
@@ -159,7 +158,6 @@ def fetch_pubmed(query):
                 API_STATUS_LOG["PubMed"] = "success_with_0_results"
                 return results
             
-            # Fetch summary
             sum_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi"
             sum_params = {"db": "pubmed", "id": ",".join(ids), "retmode": "json"}
             if NCBI_API_KEY:
@@ -180,7 +178,7 @@ def fetch_pubmed(query):
                         "doi": doi,
                         "pmid": uid,
                         "title": meta.get("title", ""),
-                        "abstract": "",  # 后面由 S2 或大模型补齐
+                        "abstract": "",
                         "authors": [a.get("name") for a in meta.get("authors", [])],
                         "journal": meta.get("source", ""),
                         "year": meta.get("pubdate", "")[:4],
@@ -326,7 +324,6 @@ def fetch_biorxiv(query):
             items = r.json().get("collection", [])
             for item in items:
                 title = item.get("title", "")
-                # 本地相关性初筛
                 if query.lower() in title.lower() or query.lower() in item.get("abstract", "").lower():
                     results.append({
                         "id": f"biorxiv-{item.get('doi')}",
@@ -364,7 +361,6 @@ def fetch_google_news(query, language="en"):
                 pub_date = item.find("pubDate").text if item.find("pubDate") is not None else ""
                 source = item.find("source").text if item.find("source") is not None else ""
                 
-                # 剔除新闻末尾的媒体后缀（例如 "Headline - Source" 中的 " - Source"）
                 title_clean = title
                 if " - " in title:
                     title_clean = " - ".join(title.split(" - ")[:-1]).strip()
@@ -413,7 +409,7 @@ def programmatic_deduplicate(papers, news):
     for n in news:
         title_norm = "".join(n.get("title", "").lower().split())
         if title_norm in seen_news_titles: continue
-        if title_norm in seen_titles: continue # 新闻直接指向文献本身
+        if title_norm in seen_titles: continue
         
         seen_news_titles.add(title_norm)
         unique_news.append(n)
@@ -422,7 +418,6 @@ def programmatic_deduplicate(papers, news):
 
 def llm_deduplicate(papers, news):
     print("[*] Running LLM precision deduplication and filtering...")
-    # 只取一部分进行大模型深度对比
     papers_meta = [{"idx": i, "title": p["title"], "doi": p["doi"]} for i, p in enumerate(papers[:20])]
     news_meta = [{"idx": i, "title": n["title"], "source": n["source"]} for i, n in enumerate(news[:20])]
     
@@ -454,7 +449,6 @@ def llm_deduplicate(papers, news):
         kept_papers = [papers[i] for i in decisions.get("keep_paper_indices", []) if i < len(papers)]
         kept_news = [news[i] for i in decisions.get("keep_news_indices", []) if i < len(news)]
         
-        # 兜底：如果解析空，就做本地截断
         if not kept_papers: kept_papers = papers[:6]
         if not kept_news: kept_news = news[:6]
         return kept_papers, kept_news
@@ -576,11 +570,11 @@ def markdown_to_html(text):
     for line in lines:
         line = line.strip()
         if not line: continue
-        if line.startswith("* ") or line.startswith("- "):
+        if line.startswith("*") or line.startswith("-"):
             if not in_list:
                 html_lines.append("<ul>")
                 in_list = True
-            line_content = line[1:].strip()
+            line_content = line.lstrip("*- ").strip()
             while "**" in line_content:
                 line_content = line_content.replace("**", "<strong>", 1).replace("**", "</strong>", 1)
             html_lines.append(f"<li>{line_content}</li>")
@@ -599,15 +593,12 @@ def markdown_to_html(text):
 # 报纸风格页面渲染
 # ==========================================
 def render_newspaper_html(papers, news, classification):
-    # 统计中文成功生成的比例
     translated_cnt = sum(1 for p in papers if p.get("chinese_summary")) + sum(1 for n in news if n.get("chinese_summary"))
     
-    # 划分要闻 (今日要闻 headline) 和学术文献/疫情事件
     headlines_html = ""
     events_html = ""
     literature_html = ""
     
-    # 前2个文献和前2个新闻直接包装为"今日要闻"
     headlines_items = papers[:2] + news[:2]
     other_papers = papers[2:]
     other_news = news[2:]
@@ -814,12 +805,12 @@ footer {{ border-top: 3px double var(--ink); margin-top: 35px; padding-top: 16px
     }});
   }});
   document.querySelectorAll('.global-language').forEach(function(button){{
-    button.addEventListener('click', function(){{{
+    button.addEventListener('click', function(){{
       const language = button.getAttribute('data-language') || 'zh';
       document.querySelectorAll('.bilingual-card').forEach(function(card){{
         setCardLanguage(card, language);
       }});
-    }}});
+    }});
   }});
 }})();
 </script>
@@ -837,7 +828,6 @@ footer {{ border-top: 3px double var(--ink); margin-top: 35px; padding-top: 16px
 def main():
     print(f"=== Pathogen Daily Intelligence (Target Pathogen: {PROFILE_ID}) ===")
     
-    # 1. 大模型提取病原学检索词扩展计划
     search_plan = generate_search_plan(PROFILE_ID)
     pubmed_q = search_plan.get("pubmed_query", PROFILE_ID)
     news_q_en = search_plan.get("google_news_query_en", PROFILE_ID)
@@ -845,7 +835,6 @@ def main():
     
     print(f"[*] Generated Query Matrix:\n - PubMed: {pubmed_q}\n - News EN: {news_q_en}\n - News ZH: {news_q_zh}")
     
-    # 2. 跨学术站点、预印本、新闻多源并发拉取
     raw_papers = []
     raw_papers.extend(fetch_pubmed(pubmed_q))
     raw_papers.extend(fetch_europepmc(pubmed_q))
@@ -857,22 +846,18 @@ def main():
     raw_news.extend(fetch_google_news(news_q_en, "en"))
     raw_news.extend(fetch_google_news(news_q_zh, "zh"))
     
-    # 3. 本地精准去重
     unique_papers, unique_news = programmatic_deduplicate(raw_papers, raw_news)
     print(f"[*] After standard cleaning: {len(unique_papers)} papers, {len(unique_news)} news left.")
     
-    # 4. 大模型高精度语义级合并与去重
     final_papers, final_news = llm_deduplicate(unique_papers, unique_news)
     print(f"[*] After LLM refinement: {len(final_papers)} papers, {len(final_news)} news selected.")
     
-    # 5. 学术文献与新闻分类、分别调用深度解析
     for paper in final_papers:
         process_paper_llm(paper)
         
     for news_item in final_news:
         process_news_llm(news_item)
         
-    # 6. 渲染最终的具有复古报刊美感的静态 HTML 页面
     render_newspaper_html(final_papers, final_news, search_plan)
 
 if __name__ == "__main__":
