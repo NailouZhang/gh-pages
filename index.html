@@ -61,7 +61,7 @@ footer { border-top: 3px double var(--ink); margin-top: 35px; padding-top: 16px;
     <p>Pathogen Intelligence Daily · 权威知识联动生成</p>
   </header>
   
-  <div class="date">情报生成时间：2026/08/04 · 数据覆盖：2026/07/28 — 2026/08/04</div>
+  <div class="date">情报生成时间：2026/08/05 · 数据覆盖：2026/07/29 — 2026/08/05</div>
   
   <div class="toolbar">
     <button type="button" class="global-language" data-language="zh">显示中文</button>
@@ -82,6 +82,22 @@ footer { border-top: 3px double var(--ink); margin-top: 35px; padding-top: 16px;
         <article class="story paper bilingual-card" id="hl-0">
           <div class="kicker">学术文献 · headline</div>
           <div class="lang-panel lang-zh" data-lang="zh">
+            <h3>诊断差距是汉坦病毒疫苗开发的隐藏障碍。</h3>
+            <div class="summary-body"><p>摘要文本不可用。</p></div>
+          </div>
+          <div class="lang-panel lang-en" data-lang="en" hidden>
+            <h3>Diagnostic Gaps as a Hidden Barrier to Hantavirus Vaccine Development.</h3>
+            <div class="summary-body"><p>Abstract text unavailable.</p></div>
+          </div>
+          <button type="button" class="language-toggle" data-card-id="hl-0">en</button>
+          <div class="meta">Ann Lab Med · 可报道日期 2026 · Shaikh Roshan</div>
+          <p class="content-status ok">证据等级 E2：大模型多维度交叉检验成功。</p>
+          <div class="links"><a href='https://pubmed.ncbi.nlm.nih.gov/42548184' target='_blank'>打开全文证据</a></div>
+        </article>
+        
+        <article class="story paper bilingual-card" id="hl-1">
+          <div class="kicker">学术文献 · headline</div>
+          <div class="lang-panel lang-zh" data-lang="zh">
             <h3>MHCmet：基于神经网络的正汉坦病毒表位预测工具。</h3>
             <div class="summary-body"><p>鉴定病原体蛋白质组中的肽免疫原有助于开发诊断试剂盒、治疗剂和预防性疫苗。识别此类肽的传统方法通常费力、耗时且资源密集，导致效率和可扩展性有限。鉴于病毒蛋白质组的广泛大小和多样性，使用最先进的计算工具对于识别免疫原性片段至关重要。这项研究提出了 MHCmet，这是一种深度学习工具，用于识别与人类 MHC I 类受体结合的肽片段。 MHCmet 的关键创新在于其等位基因特异性编码策略，与架构中的 CNN 双向 LSTM 层集成。现有工具在所有 HLA 等位基因上统一应用单一编码方案，而 MHCmet 根据预测性能并集成卷积神经网络 (CNN)、多头自注意力和双向 LSTM 层，为每个等位基因动态选择最佳编码技术 Onehot、BLOSUM62 或非线性 Fisher (NLF)。这种设计更好地捕捉了肽-MHC 结合槽的结构和物理化学多样性，从而显着改善了预测。 MHCmet 的中位 AUC 为 0.91，高于 NetMHCpan (0.89) 和 MHCflurry (0.85)。该工具接受 FASTA 格式的目标蛋白序列作为输入，并根据 MHC I 类超型采用各种编码技术。输出文件包含表位序列、表位长度、结合亲和力、预测分数以及结合每个表位的 MHC。此外，该工具还用于预测 MHC I 类表位，以多布拉瓦正汉坦病毒 (DOBV) 的糖蛋白为目标，并鉴定了 40 多个对 MHC I 类受体具有结合亲和力的肽片段。这些候选药物在任何转化应用之前都需要进一步的实验验证。该工具可以在 https://github.com/rishabhdhenkawat/mhcMET 上免费访问。</p></div>
           </div>
@@ -89,45 +105,13 @@ footer { border-top: 3px double var(--ink); margin-top: 35px; padding-top: 16px;
             <h3>MHCmet: A neural network based epitope prediction tool for orthohantaviruses.</h3>
             <div class="summary-body"><p>Identification of peptide immunogens in a pathogen proteome can help to develop diagnostic kits, therapeutics, and preventive vaccines. Traditional methods for identifying such peptides are often laborious, time-consuming, and resource intensive, resulting in limited efficiency and scalability. Given the extensive size and diversity of viral proteomes, the use of state-of-the-art computational tools has become essential for identifying immunogenic fragments. This study presents MHCmet, a deep learning tool for identifying such peptide fragments that bind human MHC class I receptors. The key innovation of MHCmet lies in its allele-specific encoding strategy, integrating with CNN-bidirectional LSTM layers in the architecture. Whereas existing tools apply a single encoding scheme uniformly across all HLA alleles, MHCmet dynamically selects the optimal encoding technique One-hot, BLOSUM62, or Non-Linear Fisher (NLF) for each allele based on predictive performance with the integration of Convolutional Neural Networks (CNN), multi-head self-attention, and bidirectional LSTM layers. This design captures the structural and physicochemical diversity of peptide-MHC binding grooves better, leading to measurably improved predictions. MHCmet had a median AUC of 0.91, higher than NetMHCpan (0.89) and MHCflurry (0.85). The tool accepts target protein sequences in FASTA format as input and employs various encoding techniques depending on the MHC class I supertype. The output file contains the epitope sequences, epitope lengths, binding affinities, prediction scores, and the MHC that binds each epitope. Furthermore, the tool was used to predict MHC class-I epitopes, targeting the glycoprotein of Dobrava Orthohantavirus (DOBV) and identified more than 40 peptide fragments with binding affinity for MHC class-I receptors. These candidates require further experimental validation before any translational application. The tool can be freely accessed at https://github.com/rishabhdhenkawat/mhcMET.</p></div>
           </div>
-          <button type="button" class="language-toggle" data-card-id="hl-0">en</button>
+          <button type="button" class="language-toggle" data-card-id="hl-1">en</button>
           <div class="meta">Comput Biol Chem · 可报道日期 2026 · Sharma Devanshi, Dhenkawat Rishabh, Saini Snehal, Goyal Garima, Upadhyay Rahul, Kumar Vinay, Baranwal Manoj</div>
           <p class="content-status ok">证据等级 E2：大模型多维度交叉检验成功。</p>
           <div class="links"><a href='https://pubmed.ncbi.nlm.nih.gov/42541863' target='_blank'>打开全文证据</a></div>
         </article>
         
-        <article class="story paper bilingual-card" id="hl-1">
-          <div class="kicker">学术文献 · headline</div>
-          <div class="lang-panel lang-zh" data-lang="zh">
-            <h3>儿童汉坦病毒感染。</h3>
-            <div class="summary-body"><p>汉坦病毒是罕见但致命的病原体。新世界汉坦病毒主要存在于北美和南美，会引起汉坦病毒心肺综合征，导致多达三分之一的受影响患者死亡。旧世界汉坦病毒主要流行于欧洲和亚洲，引起肾综合征出血热，并且根据特定的汉坦病毒，可能导致高达 15% 的患者死亡。高度的临床怀疑对于这些病症的诊断非常重要，因为在发病时可能存在重要的流行病学线索。存在多种检测方式，从血涂片评估（针对汉坦病毒心肺综合征，许多农村诊所均可提供）到血清学评估和聚合酶链反应检测（三级护理中心可提供或发送至参考实验室）。尽管对许多此类病毒缺乏行之有效的抗病毒疗法，但三级医疗中心提供的支持性护理，包括侵入性心血管监测、机械通气、透析（针对肾综合征出血热）和体外膜肺氧合（针对汉坦病毒心肺综合征）可能会改善预后。鉴于死亡风险较高以及这些患者可能在 24 小时内迅速失代偿，因此必须及早识别汉坦病毒感染并转移至三级医疗中心。这种非特异性前驱症状类似于儿童中普遍存在的更常见的病毒性疾病，并且汉坦病毒心肺综合征儿童比成人更快地进展至死亡，这凸显了儿科医生需要对这种罕见而危险的疾病保持警惕。</p></div>
-          </div>
-          <div class="lang-panel lang-en" data-lang="en" hidden>
-            <h3>Hantavirus Infections in Children.</h3>
-            <div class="summary-body"><p>Hantaviruses are rare but deadly pathogens. New World hantaviruses, primarily present in North and South America, cause hantavirus cardiopulmonary syndrome, which leads to death in up to one-third of affected patients. Old World hantaviruses, primarily endemic to Europe and Asia, cause hemorrhagic fever with renal syndrome and, dependent on the specific hantavirus, may cause death in up to 15% of patients. A heightened clinical suspicion is important for diagnosis of these conditions because important epidemiologic clues may exist at the time of presentation. A variety of testing modalities exist, from evaluation of blood smears (for hantavirus cardiopulmonary syndrome and may be available at many rural clinics) to serological evaluation and polymerase chain reaction testing (available at tertiary care centers or as a send-out to a reference laboratory). Despite the absence of proven antiviral therapies for many of these viruses, supportive care present at tertiary-level medical centers including invasive cardiovascular monitoring, mechanical ventilation, and access to dialysis (for hemorrhagic fever with renal syndrome) and extracorporeal membrane oxygenation (for hantavirus cardiopulmonary syndrome) may improve outcomes. Given the high risk of death as well as the potential for these patients to decompensate rapidly over 24 hours, early recognition of hantavirus infections and transfer to a tertiary medical center is imperative. The nonspecific prodrome, which mimics more common viral illnesses ubiquitous in children, as well as a more rapid progression to death in children than adults with hantavirus cardiopulmonary syndrome, highlights the need for pediatricians to remain vigilant for this rare and dangerous disease.</p></div>
-          </div>
-          <button type="button" class="language-toggle" data-card-id="hl-1">en</button>
-          <div class="meta">Pediatr Rev · 可报道日期 2026 · Cable Calvin J, Dehority Walter</div>
-          <p class="content-status ok">证据等级 E2：大模型多维度交叉检验成功。</p>
-          <div class="links"><a href='https://pubmed.ncbi.nlm.nih.gov/42538015' target='_blank'>打开全文证据</a></div>
-        </article>
-        
         <article class="story paper bilingual-card" id="hl-2">
-          <div class="kicker">公共卫生事件 · unconfirmed</div>
-          <div class="lang-panel lang-zh" data-lang="zh">
-            <h3>游轮上疑似汉坦病毒爆发造成 3 人死亡：须知 - ABC News</h3>
-            <div class="summary-body"><p>原始新闻内容不可用。</p></div>
-          </div>
-          <div class="lang-panel lang-en" data-lang="en" hidden>
-            <h3>3 dead in suspected hantavirus outbreak aboard a cruise ship: What to know - ABC News</h3>
-            <div class="summary-body"><p>Original news content unavailable.</p></div>
-          </div>
-          <button type="button" class="language-toggle" data-card-id="hl-2">en</button>
-          <div class="meta">ABC News - Breaking News, Latest News and Videos · 可报道日期 Mon, 03 Aug 2026 14:59:08 GMT · Global</div>
-          <p class="content-status ok">证据等级 E2：大模型多维度交叉检验成功。</p>
-          <div class="links"><a href='https://news.google.com/rss/articles/CBMiowFBVV95cUxPaVFxQTZQbEFJdm9jTU5qVFFlbUh1Z2tCRDhCZHBlY3NneVhwN0VEV1lJOUlZVjVoNUxfMGVsbmVpcGkwVTF6TWVRWTlhb0xSamJaZU5QMFJoZ0lNME1BT0FoRlJCSmNnWW81cXN0QVBqb2RhSWhJTDRmYWE4eW4tcUdMVlFjcTBVVTVCMGFKOF9RMjhUX2ZJTFRnTzVyLW0zbk930gGoAUFVX3lxTE50VnEwRi1SSDJvaTZ0Z2VjVjZaNWlrZGlZa3BneElvZjJzcUZoRWlIZ0hXTzV4QW1TY21oVVRuMVRGZHB5X09fU3NFVWhtVVpNN3Q2aWR3UkpUM3lOamItODI2R2VWdnhjRnhQNC1ub1hqQzhmUUVRVG5idWt1Q0VIcVQ2NzRVWUF4N1NWclk4ZVZqSEF4RHBFYUpzNnl5SHZMbDhYdHlRMw?oc=5' target='_blank'>打开全文证据</a></div>
-        </article>
-        
-        <article class="story paper bilingual-card" id="hl-3">
           <div class="kicker">公共卫生事件 · unconfirmed</div>
           <div class="lang-panel lang-zh" data-lang="zh">
             <h3>智利针对汉坦病毒发布健康警报</h3>
@@ -137,10 +121,26 @@ footer { border-top: 3px double var(--ink); margin-top: 35px; padding-top: 16px;
             <h3>Chile declares health alert for hantavirus</h3>
             <div class="summary-body"><p>Original news content unavailable.</p></div>
           </div>
-          <button type="button" class="language-toggle" data-card-id="hl-3">en</button>
+          <button type="button" class="language-toggle" data-card-id="hl-2">en</button>
           <div class="meta">Outbreak News Today · 可报道日期 Sat, 01 Aug 2026 11:41:29 GMT · Global</div>
           <p class="content-status ok">证据等级 E2：大模型多维度交叉检验成功。</p>
           <div class="links"><a href='https://news.google.com/rss/articles/CBMiiwFBVV95cUxNWFl0WXV6UW1lelBIUHQ5ZVpseVAwUUtJX0g3cVBGSFBKTGE1S2pzYk9MTl9UbUdLbGMwczFoaDl6WVRsd1NVSkFQUE9naE5sUzd5a2FjSVYzYktiSmhQMzNCSU5yc1pYUS02WUtnb3dfSHJOa3JKTE52TkYyelQ0U05LSk5HbzFWRlg4?oc=5' target='_blank'>打开全文证据</a></div>
+        </article>
+        
+        <article class="story paper bilingual-card" id="hl-3">
+          <div class="kicker">公共卫生事件 · unconfirmed</div>
+          <div class="lang-panel lang-zh" data-lang="zh">
+            <h3>医生表示，汉坦病毒的头条新闻超过了实际风险；三人因莫斯科 20 亿美元远程医疗欺诈案被判刑；十分之一的外科医生在 8 年内离开该行业 – 晨间医疗更新</h3>
+            <div class="summary-body"><p>原始新闻内容不可用。</p></div>
+          </div>
+          <div class="lang-panel lang-en" data-lang="en" hidden>
+            <h3>Physicians say hantavirus headlines outpace actual risk; three sentenced in Moscow-based $2B telemedicine fraud; 1 in 10 surgeons leave the profession within 8 years – Morning Medical Update</h3>
+            <div class="summary-body"><p>Original news content unavailable.</p></div>
+          </div>
+          <button type="button" class="language-toggle" data-card-id="hl-3">en</button>
+          <div class="meta">Medical Economics · 可报道日期 Tue, 04 Aug 2026 18:53:33 GMT · Global</div>
+          <p class="content-status ok">证据等级 E2：大模型多维度交叉检验成功。</p>
+          <div class="links"><a href='https://news.google.com/rss/articles/CBMixgJBVV95cUxPX1Zsc09LTktaQzhoU1V5aXROSnhLRnRtM1A3OVM4WjIxajFkR193UlNHc21oNHdmb2sxYW93amF4TVdLejZ4VFkzRGpRNlNqRElqSTdaT3pBczdSelRiaTZtdi03SjB3T0x0dXpxQjZXbUZWQTNWcnhodXhrVGQxNHhzRHVleDNzclNKcHdjN0hiYndKT01rU0Q5SjQzMDBURFFhRDBUYl8ydEVTSVU0YnNfalc2RVc0YmU1MGloeGlHaUtfTDA3WmVDUklYcy1rTFk5SmVrMjMzdXlZWGk3UF96UDRpcVdxRk8zMjNpeDFpQmVTTlluckFSWGdlcDBHNHpqSjJnRzFvb0RnZVI4N0JnOE5qcldmVU5xb25tV3RTbDRZaUN0ckc4amFmZ012ZHlVNFJMUFowMjRYUmFhOEl3Sk9Idw?oc=5' target='_blank'>打开全文证据</a></div>
         </article>
         
     </div>
@@ -153,51 +153,6 @@ footer { border-top: 3px double var(--ink); margin-top: 35px; padding-top: 16px;
         <article class="story event bilingual-card" id="ev-0">
           <div class="kicker">卫生新闻 · Event</div>
           <div class="lang-panel lang-zh" data-lang="zh">
-            <h3>医生表示，汉坦病毒的头条新闻超过了实际风险；三人因莫斯科 20 亿美元远程医疗欺诈案被判刑；十分之一的外科医生在 8 年内离开该行业 – 晨间医疗更新</h3>
-            <div class="summary-body"><p>原始新闻内容不可用。</p></div>
-          </div>
-          <div class="lang-panel lang-en" data-lang="en" hidden>
-            <h3>Physicians say hantavirus headlines outpace actual risk; three sentenced in Moscow-based $2B telemedicine fraud; 1 in 10 surgeons leave the profession within 8 years – Morning Medical Update</h3>
-            <div class="summary-body"><p>Original news content unavailable.</p></div>
-          </div>
-          <button type="button" class="language-toggle" data-card-id="ev-0">en</button>
-          <div class="meta">来源: Medical Economics · 报道时间: Sun, 02 Aug 2026 06:39:15 GMT · 区域: Global</div>
-          <div class="links"><a href="https://news.google.com/rss/articles/CBMixgJBVV95cUxPX1Zsc09LTktaQzhoU1V5aXROSnhLRnRtM1A3OVM4WjIxajFkR193UlNHc21oNHdmb2sxYW93amF4TVdLejZ4VFkzRGpRNlNqRElqSTdaT3pBczdSelRiaTZtdi03SjB3T0x0dXpxQjZXbUZWQTNWcnhodXhrVGQxNHhzRHVleDNzclNKcHdjN0hiYndKT01rU0Q5SjQzMDBURFFhRDBUYl8ydEVTSVU0YnNfalc2RVc0YmU1MGloeGlHaUtfTDA3WmVDUklYcy1rTFk5SmVrMjMzdXlZWGk3UF96UDRpcVdxRk8zMjNpeDFpQmVTTlluckFSWGdlcDBHNHpqSjJnRzFvb0RnZVI4N0JnOE5qcldmVU5xb25tV3RTbDRZaUN0ckc4amFmZ012ZHlVNFJMUFowMjRYUmFhOEl3Sk9Idw?oc=5" target="_blank">阅读新闻原网</a></div>
-        </article>
-        
-        <article class="story event bilingual-card" id="ev-1">
-          <div class="kicker">卫生新闻 · Event</div>
-          <div class="lang-panel lang-zh" data-lang="zh">
-            <h3>弯曲肿瘤学家在内布拉斯加州接触汉坦病毒后被隔离</h3>
-            <div class="summary-body"><p>原始新闻内容不可用。</p></div>
-          </div>
-          <div class="lang-panel lang-en" data-lang="en" hidden>
-            <h3>Bend oncologist isolated in Nebraska after hantavirus exposure</h3>
-            <div class="summary-body"><p>Original news content unavailable.</p></div>
-          </div>
-          <button type="button" class="language-toggle" data-card-id="ev-1">en</button>
-          <div class="meta">来源: centraloregondaily.com · 报道时间: Fri, 31 Jul 2026 22:45:58 GMT · 区域: Global</div>
-          <div class="links"><a href="https://news.google.com/rss/articles/CBMi2gFBVV95cUxNOGNEazZYeE1HVHZOaVZianVFcXEtU25lVERNMk83MVMwR1lmUmFsMTl0M2Y5WlNhbzd4TEZralhWS1dpSEM4d1dYb05xZGxLd25icWNudW5MMDY2N0tBUGtKOWhYdTE5aS1iUkhINGhNZDRidWU3UE1BNkFVZHQ2U2haZGVNTUNyQ2NLWUQ1SEVBNXVXSzVJZG5TNnlJSklvcU9sODZKY2E0RnNfZmFqdHFwY2NlbGJyajQ2MWJNb2tVRm4wdGZkb0VCQ29kQXd3b1F1MDNRYlBkQQ?oc=5" target="_blank">阅读新闻原网</a></div>
-        </article>
-        
-        <article class="story event bilingual-card" id="ev-2">
-          <div class="kicker">卫生新闻 · Event</div>
-          <div class="lang-panel lang-zh" data-lang="zh">
-            <h3>疑似汉坦病毒爆发中心 3 人正在等待从游轮上进行医疗疏散 - ABC News</h3>
-            <div class="summary-body"><p>原始新闻内容不可用。</p></div>
-          </div>
-          <div class="lang-panel lang-en" data-lang="en" hidden>
-            <h3>3 people waiting to be medically evacuated from cruise ship at center of suspected hantavirus outbreak - ABC News</h3>
-            <div class="summary-body"><p>Original news content unavailable.</p></div>
-          </div>
-          <button type="button" class="language-toggle" data-card-id="ev-2">en</button>
-          <div class="meta">来源: ABC News - Breaking News, Latest News and Videos · 报道时间: Mon, 03 Aug 2026 20:32:40 GMT · 区域: Global</div>
-          <div class="links"><a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxQVG51a2d2Rmo0RUNLVF9oVWxRRFpxdmJ1UGlwNmJ5OVcwNV8wOTRFbl9QNHc0UkNKaDI4N0J4QjNkVEMtcVVNbWxqUzJ2QUlYVlVQMjBCbkJlWWVzNElERTR4N0FHNFhBUEdxbzJHbW9uY1Y1c1BEbnp3U0g0LTN4NzNpcURlNC13TkJGQXFlQXQyVUpkMmtvOGRjSXdLYTFpaGZzaDFsX2ZDd9IBrwFBVV95cUxOZWtUd2dHSktfZUtxY21DQ1ZXT0liSlRYRE42VUlZUnRRelhaY1l1NGJCUDladWppZ19hT3lCNUN2d1BXSUxURm5VaFdYamtIRnhFZGx0UnNBN19uOGFySnRiR1hKRUhrZXdDdTdEc1VaX1paZXlPZVd2cDJrUFA5Y3I1blhiWGh2X1pWQk9kcV8wcUdDN0tlaVMwSGhlSEcwQ2ZrdzBlZGt3VzhtV1FZ?oc=5" target="_blank">阅读新闻原网</a></div>
-        </article>
-        
-        <article class="story event bilingual-card" id="ev-3">
-          <div class="kicker">卫生新闻 · Event</div>
-          <div class="lang-panel lang-zh" data-lang="zh">
             <h3>汉坦病毒巡游后，本德医生被隔离，讨论了他的病例，在家隔离的可能性</h3>
             <div class="summary-body"><p>原始新闻内容不可用。</p></div>
           </div>
@@ -205,9 +160,54 @@ footer { border-top: 3px double var(--ink); margin-top: 35px; padding-top: 16px;
             <h3>Bend doctor in quarantine after hantavirus cruise discusses his case, possibility of quarantining at home</h3>
             <div class="summary-body"><p>Original news content unavailable.</p></div>
           </div>
-          <button type="button" class="language-toggle" data-card-id="ev-3">en</button>
-          <div class="meta">来源: centraloregondaily.com · 报道时间: Fri, 31 Jul 2026 22:45:58 GMT · 区域: Global</div>
+          <button type="button" class="language-toggle" data-card-id="ev-0">en</button>
+          <div class="meta">来源: Central Oregon Daily · 报道时间: Fri, 31 Jul 2026 22:45:58 GMT · 区域: Global</div>
           <div class="links"><a href="https://news.google.com/rss/articles/CBMingJBVV95cUxOWXFRcklWckVrV0t3b21GQVFqSUQtR29tQ1FCdU1IOS1BUU90dHlCWjJpWUpoQnVySFRiNklRaF9uS1BKUmJSSnZ5aVFlLVZ4NldCWmtpbE0zV0dHS01RajNQVFV1V243a0l4VDhzY1UtWGlZTVA5N0dZN2I1MzQ0WWtORnZGcFpMaV82VFJBMFhQZ2JzbkdYWFFpOXU5XzVPeU95Qm9hMm53Y2JVZV9mY1l3YUNxNU5abjY1QmZOMTFQUU1HQnU1OE1xVk0xaDdIS29ZLWxvNzVPUzJFMV84RUZFMVZrWWNLaldOQ2hCUk8weEhMU0lSOFVlbmZqY0FOWHVpR0JtMzA0dnA3RHVzd25fRGRISEtkTFdjSWxR?oc=5" target="_blank">阅读新闻原网</a></div>
+        </article>
+        
+        <article class="story event bilingual-card" id="ev-1">
+          <div class="kicker">卫生新闻 · Event</div>
+          <div class="lang-panel lang-zh" data-lang="zh">
+            <h3>智利发布首个预防性汉坦病毒健康警报</h3>
+            <div class="summary-body"><p>原始新闻内容不可用。</p></div>
+          </div>
+          <div class="lang-panel lang-en" data-lang="en" hidden>
+            <h3>Chile issues first-ever preventive hantavirus health alert</h3>
+            <div class="summary-body"><p>Original news content unavailable.</p></div>
+          </div>
+          <button type="button" class="language-toggle" data-card-id="ev-1">en</button>
+          <div class="meta">来源: upi.com · 报道时间: Thu, 30 Jul 2026 13:43:44 GMT · 区域: Global</div>
+          <div class="links"><a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxOeGE2Si1GNHNLLWFuN3Q3Vk9Fd3BWY3c5Z01KY2RpdDBBMU41aDZNLWZWdDR0MTY4MlBtejM5VktMQkRSaktLaWJiRkhfVDgtQmlRQUNsWGFObUlPbS1ra21FdEtQOWcxZzc1OUxPME92Q2pKVk1Bc2NwYi01LUNaVjIzeWdrODVzNVJCTkZYRHM4VUZQd3pSZkNn0gGfAUFVX3lxTE1oa2QwclIwcFRWY1BlVmE0Qko2N3pkVW84RlNpczhrRThwMHl4X3RfZHVrQlozOGpXWnoyS1dSUjRMQlFDQndmY2hmOU1pLXN6amc4dHB1WXBlbjNMOHFOTDd5Q3UybkJRTXFhR2h2SEFtQ1psWVdscE0wS1NCTXFYQ0JDUmY0UUtTcncwTjUxNzc1ems0enVuaUJHY1Z1Zw?oc=5" target="_blank">阅读新闻原网</a></div>
+        </article>
+        
+        <article class="story event bilingual-card" id="ev-2">
+          <div class="kicker">卫生新闻 · Event</div>
+          <div class="lang-panel lang-zh" data-lang="zh">
+            <h3>两名新泽西州居民可能接触过汉坦病毒：卫生部门</h3>
+            <div class="summary-body"><p>原始新闻内容不可用。</p></div>
+          </div>
+          <div class="lang-panel lang-en" data-lang="en" hidden>
+            <h3>Two NJ residents possibly exposed to hantavirus: health dept</h3>
+            <div class="summary-body"><p>Original news content unavailable.</p></div>
+          </div>
+          <button type="button" class="language-toggle" data-card-id="ev-2">en</button>
+          <div class="meta">来源: pix11.com · 报道时间: Tue, 04 Aug 2026 12:39:20 GMT · 区域: Global</div>
+          <div class="links"><a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxPc3pQVVh1UHlhLW95TnM4Z3ZhZUpzU3NNM1FhUDQ4WGZzaDJNSWFzZTgzM0l3aDRkOUVSMGJvblY4UlJGeW1yZFNtZEdSb1Z6UjhNWXJCSkRpVTZFSk9JVktBZU9QLXZfbWxJVXRCdmp1RFpGU3lSRTVrNVlFOHdsdzU3RGFHQVlsWjJuQl9zeVh4eVE2UkhBTw?oc=5" target="_blank">阅读新闻原网</a></div>
+        </article>
+        
+        <article class="story event bilingual-card" id="ev-3">
+          <div class="kicker">卫生新闻 · Event</div>
+          <div class="lang-panel lang-zh" data-lang="zh">
+            <h3>汉坦病毒疫苗上市后，Moderna 股价上涨：数据触发分析师价格目标</h3>
+            <div class="summary-body"><p>原始新闻内容不可用。</p></div>
+          </div>
+          <div class="lang-panel lang-en" data-lang="en" hidden>
+            <h3>Moderna Stock Climbs After Hantavirus Vaccine: Data Triggers Analyst Price Target</h3>
+            <div class="summary-body"><p>Original news content unavailable.</p></div>
+          </div>
+          <button type="button" class="language-toggle" data-card-id="ev-3">en</button>
+          <div class="meta">来源: Investing.com · 报道时间: Tue, 04 Aug 2026 14:53:31 GMT · 区域: Global</div>
+          <div class="links"><a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxQYVJMVmRLa0pXU1pWWXpLWV9YQUNucEV0Zk1rRHdobkV3b1kxX1ZkNkVSajBOTnRtME9BenJUcHBiVVkxZGJ5d0RwVlNPcEg0aUtfajZXVldMem5CVEZzcEptTXVKWm1CaXo3c2tZSWVKcWh5Yjh6SENhU19kTm1vajJUVjlQN012bFo2OHJ6R0FxMWVDb0gwV3ZpRVczaURPRDNfY1hxa0dNWDljN1QyZWlGQkdVdXFlcDJmaTdLRmhfVDQ?oc=5" target="_blank">阅读新闻原网</a></div>
         </article>
         
     </div>
@@ -220,21 +220,38 @@ footer { border-top: 3px double var(--ink); margin-top: 35px; padding-top: 16px;
         <article class="story paper bilingual-card" id="lit-0">
           <div class="kicker">学术文献 · RESEARCH</div>
           <div class="lang-panel lang-zh" data-lang="zh">
+            <h3>儿童汉坦病毒感染。</h3>
+            <div class="summary-body"><p>汉坦病毒是罕见但致命的病原体。新世界汉坦病毒主要存在于北美和南美，会引起汉坦病毒心肺综合征，导致多达三分之一的受影响患者死亡。旧世界汉坦病毒主要流行于欧洲和亚洲，引起肾综合征出血热，并且根据特定的汉坦病毒，可能导致高达 15% 的患者死亡。高度的临床怀疑对于这些病症的诊断非常重要，因为在发病时可能存在重要的流行病学线索。存在多种检测方式，从血涂片评估（针对汉坦病毒心肺综合征，许多农村诊所均可提供）到血清学评估和聚合酶链反应检测（三级护理中心可提供或发送至参考实验室）。尽管对许多此类病毒缺乏行之有效的抗病毒疗法，但三级医疗中心提供的支持性护理，包括侵入性心血管监测、机械通气、透析（针对肾综合征出血热）和体外膜肺氧合（针对汉坦病毒心肺综合征）可能会改善预后。鉴于死亡风险较高以及这些患者可能在 24 小时内迅速失代偿，因此必须及早识别汉坦病毒感染并转移至三级医疗中心。这种非特异性前驱症状类似于儿童中普遍存在的更常见的病毒性疾病，并且汉坦病毒心肺综合征儿童比成人更快地进展至死亡，这凸显了儿科医生需要对这种罕见而危险的疾病保持警惕。</p></div>
+          </div>
+          <div class="lang-panel lang-en" data-lang="en" hidden>
+            <h3>Hantavirus Infections in Children.</h3>
+            <div class="summary-body"><p>Hantaviruses are rare but deadly pathogens. New World hantaviruses, primarily present in North and South America, cause hantavirus cardiopulmonary syndrome, which leads to death in up to one-third of affected patients. Old World hantaviruses, primarily endemic to Europe and Asia, cause hemorrhagic fever with renal syndrome and, dependent on the specific hantavirus, may cause death in up to 15% of patients. A heightened clinical suspicion is important for diagnosis of these conditions because important epidemiologic clues may exist at the time of presentation. A variety of testing modalities exist, from evaluation of blood smears (for hantavirus cardiopulmonary syndrome and may be available at many rural clinics) to serological evaluation and polymerase chain reaction testing (available at tertiary care centers or as a send-out to a reference laboratory). Despite the absence of proven antiviral therapies for many of these viruses, supportive care present at tertiary-level medical centers including invasive cardiovascular monitoring, mechanical ventilation, and access to dialysis (for hemorrhagic fever with renal syndrome) and extracorporeal membrane oxygenation (for hantavirus cardiopulmonary syndrome) may improve outcomes. Given the high risk of death as well as the potential for these patients to decompensate rapidly over 24 hours, early recognition of hantavirus infections and transfer to a tertiary medical center is imperative. The nonspecific prodrome, which mimics more common viral illnesses ubiquitous in children, as well as a more rapid progression to death in children than adults with hantavirus cardiopulmonary syndrome, highlights the need for pediatricians to remain vigilant for this rare and dangerous disease.</p></div>
+          </div>
+          <button type="button" class="language-toggle" data-card-id="lit-0">en</button>
+          <div class="meta">Pediatr Rev · 2026 · Vol.47 No.8 Page.429-438</div>
+          <div class="meta">作者: Cable Calvin J, Dehority Walter...</div>
+          <p class="content-status ok">证据等级 E1：学术库权威索引。</p>
+          <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42538015" target="_blank">查看 DOI 链接</a></div>
+        </article>
+        
+        <article class="story paper bilingual-card" id="lit-1">
+          <div class="kicker">学术文献 · RESEARCH</div>
+          <div class="lang-panel lang-zh" data-lang="zh">
             <h3>阿根廷东北部大西洋森林蝙蝠的狂犬病、冠状病毒和汉坦病毒监测。</h3>
-            <div class="summary-body"><p>人们越来越认识到蝙蝠是许多新出现和重新出现的人畜共患病原体的储存库。然而，人们对大多数宿主和病毒的分布以及每种蝙蝠在传播中的作用知之甚少，特别是在南美洲。这项研究筛查了正汉坦病毒、狂犬病和冠状病毒感染，并对 2022 年至 2025 年期间阿根廷米西奥内斯省的蝙蝠群落进行了特征分析。至少有 14 种蝙蝠被捕获 1214 次。通过 ELISA 检测血液样本中的正汉坦病毒特异性抗体。通过两种独立的实时 RT-PCR 检测对颊咽拭子进行筛选：泛狂犬病病毒检测和泛冠状病毒检测。在两个个体（Sturnira lilium 和 Artibeus lituratus）中检测到了狂犬病病毒 RNA，这是阿根廷在 Sturnira lilium 中首次确认的记录。在两种百合属植物、一种百合花属和一种斜纹草属中检测到了冠状病毒 RNA。其中两个样本（对应于 C. perspicillata 和 A. lituratus）被成功鉴定为 Alphacoronavirus。未检测到针对正汉坦病毒的抗体。这些发现证实了食果蝙蝠中蝙蝠的高度多样性和病毒循环，支持综合监测。</p></div>
+            <div class="summary-body"><p>人们越来越认识到蝙蝠是许多新出现和重新出现的人畜共患病原体的宿主。然而，人们对大多数宿主和病毒的分布以及每种蝙蝠在传播中的作用知之甚少，特别是在南美洲。这项研究筛查了正汉坦病毒、狂犬病和冠状病毒感染，并对 2022 年至 2025 年期间阿根廷米西奥内斯省的蝙蝠群落进行了特征分析。至少有 14 种蝙蝠被捕获 1214 次。通过 ELISA 检测血液样本中的正汉坦病毒特异性抗体。通过两种独立的实时 RT-PCR 检测对颊咽拭子进行筛选：泛狂犬病病毒检测和泛冠状病毒检测。在两个个体（Sturnira lilium 和 Artibeus lituratus）中检测到了狂犬病病毒 RNA，这是阿根廷在 Sturnira lilium 中首次确认的记录。在两种百合花、一种卡罗利亚百合花和一种斜纹草中检测到了冠状病毒 RNA。其中两个样本（对应于 C. perspicillata 和 A. lituratus）被成功鉴定为 Alphacoronavirus。未检测到针对正汉坦病毒的抗体。这些发现证实了食果蝙蝠中蝙蝠的高度多样性和病毒循环，支持综合监测。</p></div>
           </div>
           <div class="lang-panel lang-en" data-lang="en" hidden>
             <h3>Rabies, Coronavirus, and Hantavirus Surveillance in Bats From the Atlantic Forest of Northeastern Argentina.</h3>
             <div class="summary-body"><p>Bats are increasingly recognized as reservoirs of numerous emerging and re-emerging zoonotic pathogens. However, little is known about the distribution of most hosts and viruses and the role of each bat species in transmission, particularly in South America. This study screened for orthohantavirus, rabies, and coronavirus infection, and characterized bat communities from Misiones Province, Argentina, during 2022-2025. At least 14 bat species were captured 1214 times. Blood samples were tested for orthohantavirus-specific antibodies by ELISA. Buccopharyngeal swabs were screened by two separate real-time RT-PCR assays: a pan-lyssavirus assay and a pan-coronavirus assay. Lyssavirus rabies RNA was detected in two individuals (Sturnira lilium and Artibeus lituratus), representing the first confirmed record in S. lilium in Argentina. Coronavirus RNA was detected in two Sturnira lilium, one Carollia perspicillata, and one Artibeus lituratus. Two of these samples, corresponding to C. perspicillata and A. lituratus, were successfully characterized as Alphacoronavirus. No antibodies against orthohantavirus were detected. These findings confirm high bat diversity and viral circulation in frugivorous bats, supporting integrated surveillance.</p></div>
           </div>
-          <button type="button" class="language-toggle" data-card-id="lit-0">en</button>
+          <button type="button" class="language-toggle" data-card-id="lit-1">en</button>
           <div class="meta">Trop Med Int Health · 2026 · Vol. No. Page.</div>
           <div class="meta">作者: Gamboa Marcelo D, Burgos Eliana F, Piccirilli María G, Hirmas Stella M, Cisterna Daniel M, Carrizo S...</div>
           <p class="content-status ok">证据等级 E1：学术库权威索引。</p>
           <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42532511" target="_blank">查看 DOI 链接</a></div>
         </article>
         
-        <article class="story paper bilingual-card" id="lit-1">
+        <article class="story paper bilingual-card" id="lit-2">
           <div class="kicker">学术文献 · RESEARCH</div>
           <div class="lang-panel lang-zh" data-lang="zh">
             <h3>2023-2025年兰溪市啮齿动物人畜共患钩端螺旋体和汉坦病毒流行情况及遗传多样性。</h3>
@@ -244,14 +261,14 @@ footer { border-top: 3px double var(--ink); margin-top: 35px; padding-top: 16px;
             <h3>Prevalence and Genetic Diversity of Zoonotic Leptospira and Hantavirus in Rodents, Lanxi City, 2023-2025.</h3>
             <div class="summary-body"><p>Leptospirosis (caused by Leptospira, a bacterium) and hantavirus disease (caused by hantavirus, a virus) are important zoonoses with rodents as main reservoirs. In this study, we investigated the prevalence and genetic diversity of Leptospira and hantavirus in rodents from rural Lanxi City, Zhejiang Province. Rodents showed a higher Leptospira carriage rate than the national average. All hantavirus isolates were Seoul virus (SEOV) and displayed high genetic divergence from vaccine strains. Notably, a unique local phylogenetic cluster of Leptospira borgpetersenii was identified, indicating potential vaccine mismatch and local evolutionary divergence. Samples were collected from April 2023 to August 2025, with intensive trapping from April to August annually in 2023-2024 and additional sampling in April 2025. Liver and kidney tissues were collected via aseptic dissection. Real-time fluorescent PCR was used to detect pathogen nucleic acids, and gene sequencing and phylogenetic analysis were performed on positive samples. A total of 350 rodents were captured, with Rattus norvegicus (brown rat) as the dominant species (80.00%). The overall Leptospira carriage rate was 7.14% (25/350), with the highest rate in R. norvegicus (7.86%). The overall hantavirus carriage rate was 1.43% (5/350), distributed mainly in R. norvegicus and Rattus flavipectus (yellow-breasted rat). No coinfection with both pathogens was detected. Genetic analysis identified 12 Leptospira strains as Leptospira interrogans and 2 as L. borgpetersenii; the latter showed genetic differences from domestic and foreign strains, suggesting a potential evolutionary trend. The two hantavirus strains were both SEOV, closely related to domestic SEOV strains from 2021 but with only 86.08-86.81% nucleotide homology to vaccine strains (e.g., 80-39, Z37), indicating natural variation. Rodents in rural Lanxi have a relatively high Leptospira carriage rate, and hantavirus is dominated by the SEOV type. R. norvegicus is the main host of both pathogens. Targeted monitoring and prevention/control measures should be strengthened. Natural genetic variation suggests potential antigenic drift and reduced vaccine matching, which requires further serological validation. Attention should be paid to the impact of pathogen genetic variation on control efforts.</p></div>
           </div>
-          <button type="button" class="language-toggle" data-card-id="lit-1">en</button>
+          <button type="button" class="language-toggle" data-card-id="lit-2">en</button>
           <div class="meta">Vector Borne Zoonotic Dis · 2026 · Vol. No. Page.15303667261474433</div>
           <div class="meta">作者: Xu Qianqian, Hu Yuanwei, Liu Zhitong, Xu Ting, Yu Qian...</div>
           <p class="content-status ok">证据等级 E1：学术库权威索引。</p>
           <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42529938" target="_blank">查看 DOI 链接</a></div>
         </article>
         
-        <article class="story paper bilingual-card" id="lit-2">
+        <article class="story paper bilingual-card" id="lit-3">
           <div class="kicker">学术文献 · RESEARCH</div>
           <div class="lang-panel lang-zh" data-lang="zh">
             <h3>皮肤科医生的汉坦病毒。</h3>
@@ -261,28 +278,11 @@ footer { border-top: 3px double var(--ink); margin-top: 35px; padding-top: 16px;
             <h3>Hantavirus for the dermatologist.</h3>
             <div class="summary-body"><p>Abstract text unavailable.</p></div>
           </div>
-          <button type="button" class="language-toggle" data-card-id="lit-2">en</button>
+          <button type="button" class="language-toggle" data-card-id="lit-3">en</button>
           <div class="meta">J Am Acad Dermatol · 2026 · Vol. No. Page.</div>
           <div class="meta">作者: Shen Catherine Z, Adams Jennifer, Freeman Esther E, Goh Carolyn, Rosenbach Misha...</div>
           <p class="content-status ok">证据等级 E1：学术库权威索引。</p>
           <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42524798" target="_blank">查看 DOI 链接</a></div>
-        </article>
-        
-        <article class="story paper bilingual-card" id="lit-3">
-          <div class="kicker">学术文献 · RESEARCH</div>
-          <div class="lang-panel lang-zh" data-lang="zh">
-            <h3>气候变化是南亚汉坦病毒风险的放大器：一个被忽视的联系。</h3>
-            <div class="summary-body"><p>汉坦病毒在南亚人群和啮齿动物储存库中已被血清流行病学证实，在印度的职业危险人群中证实了抗汉坦病毒抗体，在斯里兰卡证实了与慢性肾病的独立关联，并且在超过五分之一的住院钩端螺旋体病患者中发现了与钩端螺旋体病的合并感染。尽管如此，这些发现与该地区日益加剧的季风洪水、快速城市化和气候驱动的啮齿动物生态的交叉点仍然完全未经检验。这封信强调了被忽视的气候与汉坦病毒之间的关系，指出了扩大南亚传播风险的结​​构性漏洞，并呼吁在整个地区进行综合洪水应对监测和“同一个健康”协调。</p></div>
-          </div>
-          <div class="lang-panel lang-en" data-lang="en" hidden>
-            <h3>Climate change as an amplifier of hantavirus risk in South Asia: a neglected nexus.</h3>
-            <div class="summary-body"><p>Hantavirus is seroepidemiologically established in South Asian human populations and rodent reservoirs, with anti-hantavirus antibodies confirmed in occupational risk groups in India, an independent association with chronic kidney disease demonstrated in Sri Lanka, and co-infection with leptospirosis identified in more than one-fifth of hospitalized leptospirosis patients. Despite this, the intersection of these findings with the region's intensifying monsoon floods, rapid urbanization, and climate-driven rodent ecology remains entirely unexamined. This letter highlights the neglected climate-hantavirus nexus, identifies structural vulnerabilities that amplify transmission risk in South Asia, and calls for integrated flood-response surveillance and One Health coordination across the region.</p></div>
-          </div>
-          <button type="button" class="language-toggle" data-card-id="lit-3">en</button>
-          <div class="meta">Trans R Soc Trop Med Hyg · 2026 · Vol. No. Page.</div>
-          <div class="meta">作者: Talha Muhammad...</div>
-          <p class="content-status ok">证据等级 E1：学术库权威索引。</p>
-          <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42522561" target="_blank">查看 DOI 链接</a></div>
         </article>
         
     </div>
@@ -295,7 +295,7 @@ footer { border-top: 3px double var(--ink); margin-top: 35px; padding-top: 16px;
         <tr><th>检索源</th><th>当前状态</th><th>记录量</th><th>诊断摘要</th></tr>
       </thead>
       <tbody>
-        <tr><td>PubMed</td><td>success</td><td>success_with_28_results</td><td>-</td></tr><tr><td>EuropePMC</td><td>success</td><td>success_with_7_results</td><td>-</td></tr><tr><td>SemanticScholar</td><td>success</td><td>success_with_10_results</td><td>-</td></tr><tr><td>CrossRef</td><td>success</td><td>success_with_29_results</td><td>-</td></tr><tr><td>bioRxiv</td><td>success</td><td>success_filtered_0_results</td><td>-</td></tr><tr><td>GoogleNews_EN</td><td>success</td><td>success_with_84_results</td><td>-</td></tr><tr><td>GoogleNews_ZH</td><td>success</td><td>success_with_0_results</td><td>-</td></tr>
+        <tr><td>PubMed</td><td>success</td><td>success_with_28_results</td><td>-</td></tr><tr><td>EuropePMC</td><td>success</td><td>success_with_7_results</td><td>-</td></tr><tr><td>SemanticScholar</td><td>success</td><td>failed_code_429</td><td>-</td></tr><tr><td>CrossRef</td><td>success</td><td>success_with_28_results</td><td>-</td></tr><tr><td>bioRxiv</td><td>success</td><td>success_filtered_0_results</td><td>-</td></tr><tr><td>GoogleNews_EN</td><td>success</td><td>success_with_69_results</td><td>-</td></tr><tr><td>GoogleNews_ZH</td><td>success</td><td>success_with_0_results</td><td>-</td></tr>
       </tbody>
     </table>
   </section>
